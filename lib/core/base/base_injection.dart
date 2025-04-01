@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 /// An abstract class that manages scoped dependency injection using GetIt.
 ///
 /// This class provides methods to set up and tear down dependency injections
-/// within a specific scope. Concrete implementations should 
+/// within a specific scope. Concrete implementations should
 /// define the scope name
 /// and provide registration functions.
 ///
@@ -17,7 +17,7 @@ import 'package:get_it/get_it.dart';
 ///     registrations: [
 ///       (injector) => injector.registerSingleton<SomeService>(
 ///         SomeServiceImpl()
-///      ), 
+///      ),
 ///     ],
 ///   );
 /// }
@@ -36,7 +36,7 @@ abstract class BaseInjection {
 
   /// List of registration functions that will be called during [setUp].
   ///
-  /// Each function receives the GetIt injector instance to register 
+  /// Each function receives the GetIt injector instance to register
   /// dependencies.
   final List<void Function(GetIt)> registrations;
 
@@ -53,9 +53,9 @@ abstract class BaseInjection {
     final injector = GetIt.instance;
     log('\x1B[92mSetting up ${scopeName.toUpperCase()} injections');
 
-    injector.pushNewScope(
+    await injector.pushNewScopeAsync(
       scopeName: scopeName,
-      init: (_) {
+      init: (_) async {
         for (final register in registrations) {
           register(injector);
         }
