@@ -28,6 +28,7 @@ class MainAppWidget extends StatelessWidget {
       child: MaterialApp.router(
         title: "Wendy's",
         routerConfig: AppRoutes.routerConfig,
+        theme: ThemeData(primaryColor: Colors.redAccent),
       ),
     );
   }
