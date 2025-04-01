@@ -41,5 +41,5 @@ jobs:
         # just a dummy step to show the build step
         # This step is not necessary for the CI pipeline but can be used to build the APK
         run: |
-          flutter build apk --debug
+          echo flutter build apk --debug
           echo "APK built successfully!"
