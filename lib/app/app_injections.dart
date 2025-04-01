@@ -1,5 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wendys_challenge/core/base/base_injection.dart';
+import 'package:wendys_challenge/core/services/cache_service/cache_service.dart';
+import 'package:wendys_challenge/core/services/http_service/http_service.dart';
+import 'package:wendys_challenge/core/services/http_service/interceptors/e_tag_interceptor.dart';
 
 /// [AppInjections] is responsible for registering application-wide dependencies
 /// that need to be accessible throughout the app lifecycle.
@@ -16,8 +20,16 @@ class AppInjections extends BaseInjection {
     : super(
         scopeName: 'App',
         registrations: [
-          (i) => i.registerSingletonAsync<SharedPreferences>(
-            SharedPreferences.getInstance,
+          (i) => i.registerSingleton<Future<SharedPreferences>>(
+            SharedPreferences.getInstance(),
+          ),
+          (i) => i.registerSingleton<CacheService>(CacheServiceImpl(i.get())),
+          (i) => i.registerSingleton<Dio>(Dio()),
+          (i) => i.registerSingleton<ETagInterceptor>(
+            ETagInterceptor(i.get<CacheService>()),
+          ),
+          (i) => i.registerSingleton<HttpService>(
+            HttpServiceImpl(i.get(), i.get()),
           ),
         ],
       );
