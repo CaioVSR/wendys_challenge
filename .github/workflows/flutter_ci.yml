@@ -1,0 +1,40 @@
+name: Flutter CI
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    name: Run Flutter CI Pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter (latest stable)
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.pub-cache
+          key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.yaml') }}
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run analysis
+        run: flutter analyze
+
+      - name: Check code formatting
+        run: flutter format --set-exit-if-changed .
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Build APK (Debug)
+        run: flutter build apk --debug
