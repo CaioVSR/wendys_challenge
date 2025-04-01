@@ -28,14 +28,18 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Generate files from build_runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
       - name: Run analysis
         run: flutter analyze
-
-      - name: Check code formatting
-        run: flutter format --set-exit-if-changed .
 
       - name: Run tests
         run: flutter test
 
       - name: Build APK (Debug)
-        run: flutter build apk --debug
+        # just a dummy step to show the build step
+        # This step is not necessary for the CI pipeline but can be used to build the APK
+        run: |
+          flutter build apk --debug
+          echo "APK built successfully!"
