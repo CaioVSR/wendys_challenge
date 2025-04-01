@@ -5,19 +5,19 @@ import 'package:wendys_challenge/features/splash/presentation/cubit/splash_cubit
 import 'package:wendys_challenge/features/splash/presentation/screens/splash_screen.dart';
 import 'package:wendys_challenge/features/splash/splash_injections.dart';
 
-/// A route that displays the splash screen.
+/// A route that displays the [SplashScreen] screen.
 ///
-/// [SplashRoutes] extends [GoRoute] and defines the settings for the splash
-/// screen route. It sets up dependency injection and provides a
-/// [SplashCubit] to manage the splash state. The route is wrapped with an
-/// [InjectionScopeWrapper] to ensure the proper setup and teardown of the
+/// This route extends [GoRoute] and defines the settings for a particular
+/// screen. It sets up dependency injection and provides the necessary state
+/// management via the required providers. The route is wrapped with an
+/// [InjectionScopeWrapper] to ensure proper setup and teardown of the
 /// dependency injection scope.
 class SplashRoutes extends GoRoute {
-  /// Creates a new instance of [SplashRoutes].
+  /// Creates a new instance of the route.
   ///
-  /// The route is defined with the path '/' and the name 'splash'. The builder
-  /// function initializes the [SplashCubit] using [SplashInjections] and wraps
-  /// the [SplashScreen] in the required injection and Bloc providers.
+  /// The route is defined with a specific path and name. The builder function
+  /// initializes the required state management and dependency injection, and
+  /// wraps the target screen with the necessary providers and wrappers.
   SplashRoutes()
     : super(
         path: '/',
