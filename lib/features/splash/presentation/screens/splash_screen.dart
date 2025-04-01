@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wendys_challenge/features/home/home_navigator.dart';
 import 'package:wendys_challenge/features/splash/presentation/cubit/splash_cubit.dart';
 import 'package:wendys_challenge/features/splash/presentation/widgets/animated_logo.dart';
 
@@ -21,7 +22,7 @@ class SplashScreen extends StatelessWidget {
       listener: (context, state) {
         state.when(
           loadSuccess: () {
-            // TODO(CAIO): Navigate to the next screen
+            context.goToHome();
           },
         );
       },
