@@ -26,16 +26,3 @@ Result<T> failure<T>(dynamic exception) async {
   }
   return Left(Exception(exception.toString()));
 }
-
-/// Extensions specifically for [Result] type to provide more
-/// convenient async handling.
-extension ResultX<T> on Result<T> {
-  /// Awaits this [Result] and then handles the result.
-  ///
-  /// This combines awaiting and folding into a single call
-  /// for more concise code.
-  Future<void> fold({
-    required void Function(Exception error) onFailure,
-    required void Function(T data) onSuccess,
-  }) async => (await this).fold(onFailure, onSuccess);
-}

@@ -1,5 +1,7 @@
 import 'package:wendys_challenge/core/base/base_injection.dart';
 import 'package:wendys_challenge/features/home/data/data_sources/remote/home_data_source.dart';
+import 'package:wendys_challenge/features/home/data/repositories/home_repository_impl.dart';
+import 'package:wendys_challenge/features/home/domain/repositories/home_repository.dart';
 
 /// Injection class for the `Home` feature.
 ///
@@ -18,6 +20,9 @@ class HomeInjections extends BaseInjection {
         registrations: [
           (i) => i.registerLazySingleton<HomeDataSource>(
             () => HomeDataSourceImpl(i.get()),
+          ),
+          (i) => i.registerLazySingleton<HomeRepository>(
+            () => HomeRepositoryImpl(i.get()),
           ),
         ],
       );
