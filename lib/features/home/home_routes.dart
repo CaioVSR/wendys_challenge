@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wendys_challenge/core/base/injection_scope_wrapper.dart';
+import 'package:wendys_challenge/core/utils/injection_scope_wrapper.dart';
 import 'package:wendys_challenge/features/home/home_injections.dart';
+import 'package:wendys_challenge/features/home/presentation/cubit/get_menus_cubit.dart';
 import 'package:wendys_challenge/features/home/presentation/screens/home_screen.dart';
 
 /// A route that displays the [HomeScreen] screen.
@@ -27,7 +28,14 @@ class HomeRoutes extends GoRoute {
           return InjectionScopeWrapper(
             tearDown: homeInjector.tearDown,
             setUp: homeInjector.setUp,
-            child: const HomeScreen(),
+            child: MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => homeInjector.injector<GetMenusCubit>(),
+                ),
+              ],
+              child: const HomeScreen(),
+            ),
           );
         },
       );

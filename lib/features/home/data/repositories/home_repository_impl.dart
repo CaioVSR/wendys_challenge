@@ -1,4 +1,4 @@
-import 'package:wendys_challenge/core/utils/result_typedef.dart';
+import 'package:dartz/dartz.dart';
 import 'package:wendys_challenge/features/home/data/data_sources/remote/home_data_source.dart';
 import 'package:wendys_challenge/features/home/domain/entities/category_entity.dart';
 import 'package:wendys_challenge/features/home/domain/exceptions/home_exceptions.dart';
@@ -7,7 +7,7 @@ import 'package:wendys_challenge/features/home/domain/repositories/home_reposito
 /// A repository implementation for the home menu feature.
 ///
 /// This class implements the [HomeRepository] interface to bridge the data and
-/// domain layers. It transforms raw data from the remote 
+/// domain layers. It transforms raw data from the remote
 /// data source into domain
 /// entities and maps errors to domain-specific exceptions.
 ///
@@ -17,7 +17,7 @@ import 'package:wendys_challenge/features/home/domain/repositories/home_reposito
 class HomeRepositoryImpl implements HomeRepository {
   /// Creates a new instance of [HomeRepositoryImpl].
   ///
-  /// Accepts a [HomeDataSource] that is responsible for retrieving 
+  /// Accepts a [HomeDataSource] that is responsible for retrieving
   /// raw menu data.
   HomeRepositoryImpl(this._dataSource);
 
@@ -32,15 +32,15 @@ class HomeRepositoryImpl implements HomeRepository {
   ///    abstraction.
   /// 3. Converts raw data into a list of [CategoryEntity] objects.
   ///
-  /// Returns a [Result] containing either a list of [CategoryEntity] objects or
+  /// Returns either a list of [CategoryEntity] objects or
   /// a domain-specific exception if the operation fails.
   @override
-  Result<List<CategoryEntity>> getHomeMenu() async {
+  Future<Either<HomeExceptions, List<CategoryEntity>>> getHomeMenu() async {
     final result = await _dataSource.getHomeMenu();
 
     return result.fold(
-      (error) => failure(const HomeExceptions.generic()),
-      (data) => success(
+      (err) => const Left(HomeExceptions.generic()),
+      (data) => Right(
         data.menuLists.subMenus
             .map((e) => CategoryEntity(id: e.subMenuId, name: e.displayName))
             .toList(),

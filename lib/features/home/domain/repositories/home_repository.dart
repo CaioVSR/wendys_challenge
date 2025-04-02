@@ -1,5 +1,6 @@
-import 'package:wendys_challenge/core/utils/result_typedef.dart';
+import 'package:dartz/dartz.dart';
 import 'package:wendys_challenge/features/home/domain/entities/category_entity.dart';
+import 'package:wendys_challenge/features/home/domain/exceptions/home_exceptions.dart';
 
 /// A repository interface for fetching home menu data.
 ///
@@ -9,7 +10,7 @@ import 'package:wendys_challenge/features/home/domain/entities/category_entity.d
 abstract class HomeRepository {
   /// Retrieves the home menu categories.
   ///
-  /// Returns a [Result] containing a list of [CategoryEntity] objects or an
+  /// Returns either a list of [CategoryEntity] objects or an
   /// error if the operation fails.
-  Result<List<CategoryEntity>> getHomeMenu();
+  Future<Either<HomeExceptions, List<CategoryEntity>>> getHomeMenu();
 }

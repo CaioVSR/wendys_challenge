@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:wendys_challenge/core/base/base_exception.dart';
 
 part 'home_exceptions.freezed.dart';
 
@@ -11,12 +12,14 @@ part 'home_exceptions.freezed.dart';
 /// Currently, it defines a `generic` error which can be used to represent an
 /// unexpected error with an optional [message].
 @freezed
-sealed class HomeExceptions with _$HomeExceptions implements Exception {
+sealed class HomeExceptions extends Failure with _$HomeExceptions {
+  const HomeExceptions._(super.message);
+
   /// Creates a generic exception with an optional [message].
   ///
   /// The [message] parameter defaults to "Sorry, something went wrong" if not
   /// provided.
-  const factory HomeExceptions.generic({
+  const factory HomeExceptions.generic([
     @Default('Sorry, something went wrong') String message,
-  }) = _GenericException;
+  ]) = _Generic;
 }

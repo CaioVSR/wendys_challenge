@@ -1,7 +1,8 @@
 import 'dart:developer';
 
+import 'package:dartz/dartz.dart';
+import 'package:wendys_challenge/core/base/base_exception.dart';
 import 'package:wendys_challenge/core/services/http_service/http_service.dart';
-import 'package:wendys_challenge/core/utils/result_typedef.dart';
 import 'package:wendys_challenge/features/home/data/models/menu_response_model.dart';
 
 /// A data source interface for fetching home menu data.
@@ -11,7 +12,7 @@ import 'package:wendys_challenge/features/home/data/models/menu_response_model.d
 /// the result.
 sealed class HomeDataSource {
   /// Fetches the home menu data.
-  Result<MenuResponseModel> getHomeMenu();
+  Future<Either<Exception, MenuResponseModel>> getHomeMenu();
 }
 
 /// Implementation of [HomeDataSource] that uses an HTTP service to fetch
@@ -26,7 +27,7 @@ class HomeDataSourceImpl implements HomeDataSource {
   final HttpService _http;
 
   @override
-  Result<MenuResponseModel> getHomeMenu() async {
+  Future<Either<Exception, MenuResponseModel>> getHomeMenu() async {
     try {
       final response = await _http.get(
         '/menu/getSiteMenu',
@@ -51,11 +52,11 @@ class HomeDataSourceImpl implements HomeDataSource {
         throw Exception('Service status is not SUCCESS');
       }
 
-      return success(parsedResponse);
-    } on Exception catch (e) {
+      return Right(parsedResponse);
+    } on Failure catch (e) {
       log('Error fetching home menu: $e');
 
-      return failure(e);
+      return Left(e);
     }
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wendys_challenge/core/base/injection_scope_wrapper.dart';
+import 'package:wendys_challenge/core/utils/injection_scope_wrapper.dart';
 import 'package:wendys_challenge/features/splash/presentation/cubit/splash_cubit.dart';
 import 'package:wendys_challenge/features/splash/presentation/screens/splash_screen.dart';
 import 'package:wendys_challenge/features/splash/splash_injections.dart';
