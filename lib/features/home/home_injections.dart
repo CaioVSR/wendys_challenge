@@ -1,4 +1,5 @@
 import 'package:wendys_challenge/core/base/base_injection.dart';
+import 'package:wendys_challenge/features/home/data/data_sources/remote/home_data_source.dart';
 
 /// Injection class for the `Home` feature.
 ///
@@ -11,5 +12,13 @@ class HomeInjections extends BaseInjection {
   ///
   /// The constructor registers the necessary dependencies using the dependency
   /// injection container.
-  HomeInjections() : super(scopeName: 'Home', registrations: []);
+  HomeInjections()
+    : super(
+        scopeName: 'Home',
+        registrations: [
+          (i) => i.registerLazySingleton<HomeDataSource>(
+            () => HomeDataSourceImpl(i.get()),
+          ),
+        ],
+      );
 }
