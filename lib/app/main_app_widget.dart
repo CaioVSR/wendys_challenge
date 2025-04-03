@@ -30,7 +30,6 @@ class MainAppWidget extends StatelessWidget {
         title: "Wendy's",
         routerConfig: AppRoutes.routerConfig,
         theme: ThemeData(
-          primaryColor: Colors.redAccent,
           textTheme: GoogleFonts.poppinsTextTheme(),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
@@ -45,6 +44,10 @@ class MainAppWidget extends StatelessWidget {
             foregroundColor: Colors.grey,
             centerTitle: true,
             titleTextStyle: TextStyle(color: Colors.redAccent, fontSize: 24),
+          ),
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
+            backgroundColor: Colors.redAccent,
+            foregroundColor: Colors.white,
           ),
         ),
       ),
