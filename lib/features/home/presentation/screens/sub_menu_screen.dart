@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wendys_challenge/features/home/domain/entities/menu_entity.dart';
+import 'package:wendys_challenge/features/home/home_navigator.dart';
 import 'package:wendys_challenge/features/home/presentation/widgets/menu_tile.dart';
 
 /// Parameters for configuring a [SubMenuScreen].
@@ -29,7 +30,7 @@ class SubMenuScreenParams {
 /// (e.g., "Hamburgers" or "Sides"). Each menu item is displayed as a tappable
 /// tile with its name.
 ///
-/// The screen receives all configuration through a [SubMenuScreenParams] 
+/// The screen receives all configuration through a [SubMenuScreenParams]
 /// object,
 /// which provides the category name (used as the screen title) and the list of
 /// menu items to display.
@@ -53,7 +54,11 @@ class SubMenuScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           final menu = params.menuItems[index];
 
-          return MenuTile(text: menu.name, onTap: () {});
+          return MenuTile(
+            text: menu.name,
+            onTap:
+                () => context.goToProduct(ProductScreenParams(product: menu)),
+          );
         },
         separatorBuilder: (context, index) => const Divider(),
         itemCount: params.menuItems.length,
