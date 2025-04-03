@@ -31,7 +31,9 @@ class HomeRoutes extends GoRoute {
             child: MultiBlocProvider(
               providers: [
                 BlocProvider(
-                  create: (context) => homeInjector.injector<GetMenusCubit>(),
+                  create:
+                      (context) =>
+                          homeInjector.injector<GetMenusCubit>()..getMenus(),
                 ),
               ],
               child: const HomeScreen(),

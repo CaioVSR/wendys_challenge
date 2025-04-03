@@ -3,6 +3,7 @@ import 'package:wendys_challenge/features/home/data/data_sources/remote/home_dat
 import 'package:wendys_challenge/features/home/data/repositories/home_repository_impl.dart';
 import 'package:wendys_challenge/features/home/domain/repositories/home_repository.dart';
 import 'package:wendys_challenge/features/home/domain/use_cases/get_home_menus_use_case.dart';
+import 'package:wendys_challenge/features/home/presentation/cubit/get_menus_cubit.dart';
 
 /// Injection class for the `Home` feature.
 ///
@@ -28,6 +29,7 @@ class HomeInjections extends BaseInjection {
           (i) => i.registerLazySingleton<GetHomeMenuUseCase>(
             () => GetHomeMenuUseCase(i.get()),
           ),
+          (i) => i.registerFactory<GetMenusCubit>(() => GetMenusCubit(i.get())),
         ],
       );
 }

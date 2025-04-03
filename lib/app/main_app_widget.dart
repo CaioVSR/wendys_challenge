@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:wendys_challenge/app/app_routes.dart';
@@ -28,7 +29,19 @@ class MainAppWidget extends StatelessWidget {
       child: MaterialApp.router(
         title: "Wendy's",
         routerConfig: AppRoutes.routerConfig,
-        theme: ThemeData(primaryColor: Colors.redAccent),
+        theme: ThemeData(
+          primaryColor: Colors.redAccent,
+          textTheme: GoogleFonts.poppinsTextTheme(),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.redAccent,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

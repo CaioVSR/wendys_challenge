@@ -39,12 +39,21 @@ class HomeRepositoryImpl implements HomeRepository {
     final result = await _dataSource.getHomeMenu();
 
     return result.fold(
-      (err) => const Left(HomeExceptions.generic()),
-      (data) => Right(
-        data.menuLists.subMenus
-            .map((e) => CategoryEntity(id: e.subMenuId, name: e.displayName))
-            .toList(),
-      ),
+      (err) {
+        return const Left(HomeExceptions.generic());
+      },
+      (data) {
+        final uniqueCategories = <String, CategoryEntity>{};
+
+        for (final subMenu in data.menuLists.subMenus) {
+          uniqueCategories[subMenu.name.trim()] = CategoryEntity(
+            id: subMenu.subMenuId,
+            name: subMenu.name,
+          );
+        }
+
+        return Right(uniqueCategories.values.toList());
+      },
     );
   }
 }

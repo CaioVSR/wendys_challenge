@@ -53,7 +53,7 @@ class HomeDataSourceImpl implements HomeDataSource {
       }
 
       return Right(parsedResponse);
-    } on Failure catch (e) {
+    } on Exception catch (e) {
       log('Error fetching home menu: $e');
 
       return Left(e);
