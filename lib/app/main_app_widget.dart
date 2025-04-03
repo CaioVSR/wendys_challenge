@@ -41,6 +41,11 @@ class MainAppWidget extends StatelessWidget {
               ),
             ),
           ),
+          appBarTheme: const AppBarTheme(
+            foregroundColor: Colors.grey,
+            centerTitle: true,
+            titleTextStyle: TextStyle(color: Colors.redAccent, fontSize: 24),
+          ),
         ),
       ),
     );

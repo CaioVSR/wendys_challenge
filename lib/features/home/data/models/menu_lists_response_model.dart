@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:wendys_challenge/features/home/data/models/menu_item_response_model.dart';
 import 'package:wendys_challenge/features/home/data/models/sub_menu_response_model.dart';
 
 part 'menu_lists_response_model.freezed.dart';
@@ -13,10 +14,13 @@ part 'menu_lists_response_model.g.dart';
 abstract class MenuListsResponseModel with _$MenuListsResponseModel {
   /// Creates a new instance of [MenuListsResponseModel].
   ///
-  /// The [subMenus] parameter is a list of submenu models included in the
+  /// - The [subMenus] parameter is a list of submenu models included in the
+  /// response.
+  /// - The [menuItems] parameter is a list of menu item models included in the
   /// response.
   const factory MenuListsResponseModel({
     required List<SubMenuResponseModel> subMenus,
+    required List<MenuItemResponseModel> menuItems,
   }) = _MenuListsResponseModel;
 
   /// Creates an instance of [MenuListsResponseModel] from a JSON map.

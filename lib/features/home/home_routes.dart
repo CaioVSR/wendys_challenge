@@ -4,6 +4,7 @@ import 'package:wendys_challenge/core/utils/injection_scope_wrapper.dart';
 import 'package:wendys_challenge/features/home/home_injections.dart';
 import 'package:wendys_challenge/features/home/presentation/cubit/get_menus_cubit.dart';
 import 'package:wendys_challenge/features/home/presentation/screens/home_screen.dart';
+import 'package:wendys_challenge/features/home/presentation/screens/sub_menu_screen.dart';
 
 /// A route that displays the [HomeScreen] screen.
 ///
@@ -40,5 +41,14 @@ class HomeRoutes extends GoRoute {
             ),
           );
         },
+        routes: [
+          GoRoute(
+            path: 'sub-menu',
+            name: 'sub-menu',
+            builder: (context, state) {
+              return SubMenuScreen(params: state.extra! as SubMenuScreenParams);
+            },
+          ),
+        ],
       );
 }
