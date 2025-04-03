@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wendys_challenge/core/widgets/exception_widget.dart';
 import 'package:wendys_challenge/core/widgets/loading_widget.dart';
+import 'package:wendys_challenge/features/home/home_navigator.dart';
 import 'package:wendys_challenge/features/home/presentation/cubit/get_menus_cubit.dart';
 import 'package:wendys_challenge/features/home/presentation/widgets/menu_tile.dart';
 
@@ -18,6 +19,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text('Categories'), centerTitle: true),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: BlocBuilder<GetMenusCubit, GetMenusState>(
@@ -34,7 +36,16 @@ class HomeScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final menu = menus[index];
 
-                    return MenuTile(text: menu.name, onTap: () {});
+                    return MenuTile(
+                      text: menu.name,
+                      onTap:
+                          () => context.goToSubMenu(
+                            SubMenuScreenParams(
+                              menuName: menu.name,
+                              menuItems: menu.menus,
+                            ),
+                          ),
+                    );
                   },
                   separatorBuilder: (context, index) => const Divider(),
                   itemCount: menus.length,

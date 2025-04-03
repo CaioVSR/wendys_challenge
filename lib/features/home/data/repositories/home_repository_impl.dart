@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:wendys_challenge/features/home/data/data_sources/remote/home_data_source.dart';
 import 'package:wendys_challenge/features/home/domain/entities/category_entity.dart';
+import 'package:wendys_challenge/features/home/domain/entities/menu_entity.dart';
 import 'package:wendys_challenge/features/home/domain/exceptions/home_exceptions.dart';
 import 'package:wendys_challenge/features/home/domain/repositories/home_repository.dart';
 
@@ -46,9 +47,26 @@ class HomeRepositoryImpl implements HomeRepository {
         final uniqueCategories = <String, CategoryEntity>{};
 
         for (final subMenu in data.menuLists.subMenus) {
+          final uniqueMenus = <String, MenuEntity>{};
+
+          for (final menuId in subMenu.menuItems) {
+            final menuItem = data.menuLists.menuItems.firstWhere(
+              (menu) => menu.menuItemId == menuId,
+            );
+
+            uniqueMenus[menuItem.name.trim()] = MenuEntity(
+              id: menuItem.menuItemId,
+              description: menuItem.description,
+              name: menuItem.name,
+              menuItemId: menuItem.menuItemId,
+              calorieRange: menuItem.calorieRange,
+              priceRange: menuItem.priceRange,
+            );
+          }
+
           uniqueCategories[subMenu.name.trim()] = CategoryEntity(
-            id: subMenu.subMenuId,
             name: subMenu.name,
+            menus: uniqueMenus.values.toList(),
           );
         }
 

@@ -7,7 +7,7 @@ import 'package:wendys_challenge/features/home/domain/repositories/home_reposito
 ///
 /// This use case interacts with the [HomeRepository] to fetch the home menu
 /// categories, then applies business logic (e.g., sorting) on the data. It
-/// returns either a processed list of [CategoryEntity] objects 
+/// returns either a processed list of [CategoryEntity] objects
 /// or a domain-specific error.
 class GetHomeMenuUseCase {
   /// Creates a new instance of [GetHomeMenuUseCase].
