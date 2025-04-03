@@ -2,49 +2,42 @@ part of 'get_menus_cubit.dart';
 
 /// A union type representing the state of the home menu retrieval process.
 ///
-/// The [GetMenusState] class defines the different states of fetching menu
-/// data. It leverages the [freezed] package to create immutable, sealed
-/// classes with value equality and utility methods.
+/// Defines the lifecycle states of menu data fetching:
+///  - initial: Before any fetch attempt
+///  - loadInProgress: During active fetch operation
+///  - loadSuccess: When menu data is successfully retrieved
+///  - loadFailure: When an error occurs during retrieval
 @freezed
 sealed class GetMenusState with _$GetMenusState {
-  /// The initial state of the menu retrieval process.
+  /// Initial state before any menu fetch operation has started.
   const factory GetMenusState.initial() = _Initial;
 
-  /// Indicates that the menu retrieval is in progress.
+  /// State indicating an ongoing menu fetch operation.
   const factory GetMenusState.loadInProgress() = _LoadInProgress;
 
-  /// Indicates that the menu retrieval succeeded.
+  /// State indicating a successful menu fetch operation.
   ///
-  /// The [menus] parameter contains the list of retrieved categories.
+  /// Contains the retrieved [menus] list for display in the UI.
   const factory GetMenusState.loadSuccess(List<CategoryEntity> menus) =
       _LoadSuccess;
 
-  /// Indicates that the menu retrieval failed.
+  /// State indicating a failed menu fetch operation.
   ///
-  /// The [exception] parameter contains details about the error.
+  /// Contains the [exception] that caused the failure.
   const factory GetMenusState.loadFailure(HomeExceptions exception) =
       _LoadFailure;
 }
 
-/// Extension on [GetMenusState] that provides a convenient `when` method.
-///
-/// The [when] method executes a callback based on the current state, thus
-/// eliminating the need for explicit type checks or switch-case constructs.
+/// Extension providing helper methods for working with [GetMenusState].
 extension GetMenusStateX on GetMenusState {
-  bool get isInitial => this is _Initial;
-  bool get isLoadInProgress => this is _LoadInProgress;
-  bool get isLoadSuccess => this is _LoadSuccess;
-  bool get isLoadFailure => this is _LoadFailure;
-
   /// Executes the corresponding callback for the current state.
   ///
-  /// - [initial] is invoked when the state is [_Initial].
-  /// - [loadInProgress] is invoked when the state is
-  ///   [_LoadInProgress].
-  /// - [loadSuccess] is invoked with the retrieved menus when the state is
-  ///   [_LoadSuccess].
-  /// - [loadFailure] is invoked with the exception when the state is
-  ///   [_LoadFailure].
+  /// Provides a typesafe way to handle different states:
+  ///  - [initial]: Called for initial state
+  ///  - [loadInProgress]: Called while loading
+  ///  - [loadSuccess]: Called with menu data on success
+  ///  - [loadFailure]: Called with exception on failure
+  ///  - [orElse]: Default handler for any unhandled state
   T when<T>({
     required T Function() orElse,
     T Function()? initial,

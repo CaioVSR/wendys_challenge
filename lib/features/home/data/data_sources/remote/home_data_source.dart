@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
-import 'package:wendys_challenge/core/base/base_exception.dart';
 import 'package:wendys_challenge/core/services/http_service/http_service.dart';
 import 'package:wendys_challenge/features/home/data/models/menu_response_model.dart';
 
