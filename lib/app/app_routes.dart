@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:wendys_challenge/app/app_route_logger.dart';
+import 'package:wendys_challenge/features/home/home_routes.dart';
 import 'package:wendys_challenge/features/splash/splash_routes.dart';
 
 /// Manages the application's routing configuration.
@@ -19,8 +20,6 @@ class AppRoutes {
   /// route logging via [AppRouteLogger].
   static final routerConfig = GoRouter(
     observers: [AppRouteLogger()],
-    routes: [
-      SplashRoutes(),
-    ],
+    routes: [SplashRoutes(), HomeRoutes()],
   );
 }

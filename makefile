@@ -1,4 +1,4 @@
-.PHONY: build
+.PHONY: generate
 
 generate:
 	@echo "Generating the project files..."

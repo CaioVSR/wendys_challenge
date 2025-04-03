@@ -1,16 +1,17 @@
 import 'package:wendys_challenge/core/base/base_injection.dart';
 import 'package:wendys_challenge/features/splash/presentation/cubit/splash_cubit.dart';
 
-/// Injection class for the Splash feature.
+/// Injection class for the `Splash` feature.
 ///
 /// This class extends [BaseInjection] and is responsible for registering the
-/// dependencies required by the splash feature. It registers the lazy
-/// singleton instance of [SplashCubit] that manages the splash screen state.
+/// dependencies required by a specific feature. It registers the necessary
+/// dependencies (such as cubits, repositories, or services) needed to manage
+/// the feature's state and functionality.
 class SplashInjections extends BaseInjection {
-  /// Creates a new instance of [SplashInjections].
+  /// Creates a new instance of the injection class.
   ///
-  /// The constructor registers a lazy singleton of [SplashCubit] using the
-  /// dependency injection container.
+  /// The constructor registers the necessary dependencies using the dependency
+  /// injection container.
   SplashInjections()
     : super(
         scopeName: 'Splash',

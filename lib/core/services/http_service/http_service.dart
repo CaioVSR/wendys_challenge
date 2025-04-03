@@ -36,15 +36,7 @@ class HttpServiceImpl implements HttpService {
     _dio.interceptors.add(_eTagInterceptor);
 
     _dio.options.baseUrl =
-        'https://api.app.tst.wendys.digital/web-client-gateway/menu/getSiteMenu';
-
-    _dio.options.queryParameters.addAll({
-      'siteNum': '0',
-      'lang': 'en',
-      'cntry': 'US',
-      'sourceCode': 'ORDER.WENDYS',
-      'version': '22.1.2',
-    });
+        'https://api.app.tst.wendys.digital/web-client-gateway';
   }
 
   final Dio _dio;
