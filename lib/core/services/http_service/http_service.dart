@@ -3,11 +3,11 @@ import 'package:wendys_challenge/core/services/http_service/interceptors/e_tag_i
 
 /// A service interface for handling HTTP requests in the app.
 ///
-/// This sealed class defines the contract for HTTP operations, providing a
+/// This abstract class defines the contract for HTTP operations, providing a
 /// clean abstraction over the underlying HTTP client implementation. Using
 /// this interface allows the application to easily swap HTTP clients without
 /// affecting the consuming code.
-sealed class HttpService {
+abstract class HttpService {
   /// Performs an HTTP GET request to the specified path.
   ///
   /// [path] is the endpoint path to request.
@@ -19,7 +19,6 @@ sealed class HttpService {
     Map<String, dynamic>? queryParameters,
   });
 }
-
 
 /// Implementation of [HttpService] using the Dio HTTP client.
 ///
