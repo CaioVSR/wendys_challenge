@@ -53,8 +53,8 @@ void main() {
       expect(
         tearDownCalled,
         isTrue,
-        reason:
-            'tearDown should be called when the widget is removed from the tree.',
+        reason: '''
+tearDown should be called when the widget is removed from the tree.''',
       );
     });
 
