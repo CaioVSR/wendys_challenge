@@ -9,7 +9,7 @@ import 'package:wendys_challenge/features/home/data/models/menu_response_model.d
 /// This interface defines the contract for a data source that retrieves
 /// home menu data. It provides a method to fetch the menu data and handle
 /// the result.
-sealed class HomeDataSource {
+abstract class HomeDataSource {
   /// Fetches the home menu data.
   Future<Either<Exception, MenuResponseModel>> getHomeMenu();
 }
