@@ -1,0 +1,21 @@
+{
+  "name": "Double Stack™",
+  "description": "Two patties of fresh, never frozen beef with cheese, ketchup, mustard, pickle, and onion. It’s double the fresh beef, stacked with deliciousness.",
+  "displayName": "Double Stack™",
+  "baseImageName": "146",
+  "menuItemId": 30005,
+  "defaultItemId": 40005,
+  "salesItemIds": [
+    40005
+  ],
+  "promoId": 0,
+  "price": 0.0,
+  "productGroupId": "146",
+  "comboMenuItemId": 31477,
+  "titleTag": "Junior Sized Double Cheeseburger - Double Stack - Wendy's",
+  "metaDescription": "A double cheeseburger just the right size - Wendy's Double Stack made with 100% fresh North American beef with cheese, ketchup, mustard, pickle and onion.",
+  "calorieRange": "410 Cal",
+  "priceRange": "$1.79",
+  "selectionMode": "NONE",
+  "attributes": {}
+}
