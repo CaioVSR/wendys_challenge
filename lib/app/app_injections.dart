@@ -4,6 +4,7 @@ import 'package:wendys_challenge/core/base/base_injection.dart';
 import 'package:wendys_challenge/core/services/cache_service/cache_service.dart';
 import 'package:wendys_challenge/core/services/http_service/http_service.dart';
 import 'package:wendys_challenge/core/services/http_service/interceptors/e_tag_interceptor.dart';
+import 'package:wendys_challenge/features/cart/cart_injections.dart';
 
 /// [AppInjections] is responsible for registering application-wide dependencies
 /// that need to be accessible throughout the app lifecycle.
@@ -31,6 +32,7 @@ class AppInjections extends BaseInjection {
           (i) => i.registerSingleton<HttpService>(
             HttpServiceImpl(i.get(), i.get()),
           ),
+          ...CartInjections().registrations,
         ],
       );
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wendys_challenge/features/home/domain/entities/menu_entity.dart';
+import 'package:wendys_challenge/core/entities/product_entity.dart';
 import 'package:wendys_challenge/features/home/home_navigator.dart';
 import 'package:wendys_challenge/features/home/presentation/widgets/menu_tile.dart';
 
@@ -14,11 +14,11 @@ class SubMenuScreenParams {
   /// Creates a new instance of [SubMenuScreenParams].
   ///
   /// [menuName] is the title of the menu category to display in the app bar.
-  /// [menuItems] is the list of menu items to display in this category.
-  const SubMenuScreenParams({required this.menuName, required this.menuItems});
+  /// [products] is the list of menu items to display in this category.
+  const SubMenuScreenParams({required this.menuName, required this.products});
 
   /// The list of menu items to display in this sub-menu.
-  final List<MenuEntity> menuItems;
+  final List<ProductEntity> products;
 
   /// The name of the menu category, used as the screen title.
   final String menuName;
@@ -52,16 +52,17 @@ class SubMenuScreen extends StatelessWidget {
       appBar: AppBar(title: Text(params.menuName), centerTitle: true),
       body: ListView.separated(
         itemBuilder: (context, index) {
-          final menu = params.menuItems[index];
+          final product = params.products[index];
 
           return MenuTile(
-            text: menu.name,
+            text: product.name,
             onTap:
-                () => context.goToProduct(ProductScreenParams(product: menu)),
+                () =>
+                    context.goToProduct(ProductScreenParams(product: product)),
           );
         },
         separatorBuilder: (context, index) => const Divider(),
-        itemCount: params.menuItems.length,
+        itemCount: params.products.length,
       ),
     );
   }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:wendys_challenge/features/home/domain/entities/menu_entity.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wendys_challenge/core/entities/product_entity.dart';
+import 'package:wendys_challenge/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:wendys_challenge/features/home/home_navigator.dart';
 
 /// Parameters for configuring a [ProductScreen].
 ///
@@ -15,7 +18,7 @@ class ProductScreenParams {
   const ProductScreenParams({required this.product});
 
   /// The menu item to display details for.
-  final MenuEntity product;
+  final ProductEntity product;
 }
 
 /// Screen that displays detailed information about a specific menu item.
@@ -67,7 +70,10 @@ class ProductScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          context.read<CartCubit>().addToCart(params.product);
+          context.goToHome();
+        },
       ),
     );
   }

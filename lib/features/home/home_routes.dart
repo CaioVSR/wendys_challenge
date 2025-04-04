@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wendys_challenge/core/utils/injection_scope_wrapper.dart';
+import 'package:wendys_challenge/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:wendys_challenge/features/home/home_injections.dart';
 import 'package:wendys_challenge/features/home/presentation/cubit/get_menus_cubit.dart';
 import 'package:wendys_challenge/features/home/presentation/screens/home_screen.dart';
@@ -25,8 +26,6 @@ class HomeRoutes extends GoRoute {
         path: '/home',
         name: 'home',
         builder: (context, state) {
-          final homeInjector = HomeInjections();
-
           return InjectionScopeWrapper(
             tearDown: homeInjector.tearDown,
             setUp: homeInjector.setUp,
@@ -36,6 +35,9 @@ class HomeRoutes extends GoRoute {
                   create:
                       (context) =>
                           homeInjector.injector<GetMenusCubit>()..getMenus(),
+                ),
+                BlocProvider(
+                  create: (context) => homeInjector.injector<CartCubit>(),
                 ),
               ],
               child: const HomeScreen(),
@@ -54,9 +56,21 @@ class HomeRoutes extends GoRoute {
             path: 'product',
             name: 'product',
             builder: (context, state) {
-              return ProductScreen(params: state.extra! as ProductScreenParams);
+              return MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(value: homeInjector.injector<CartCubit>()),
+                ],
+                child: ProductScreen(
+                  params: state.extra! as ProductScreenParams,
+                ),
+              );
             },
           ),
         ],
       );
+
+  /// A static instance of the [HomeRoutes] class.
+  /// This instance can be used to access the route configuration
+  /// without creating a new instance.
+  static final homeInjector = HomeInjections();
 }
