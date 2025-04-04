@@ -34,6 +34,10 @@ void main() {
     );
   });
 
+  tearDown(() async {
+    await GetIt.instance.reset();
+  });
+
   group('BaseInjection', () {
     test('should have the correct scope name', () {
       expect(testInjection.scopeName, 'test-scope');
