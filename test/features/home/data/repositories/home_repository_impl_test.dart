@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:wendys_challenge/core/entities/product_entity.dart';
 import 'package:wendys_challenge/features/home/data/data_sources/remote/home_data_source.dart';
 import 'package:wendys_challenge/features/home/data/models/menu_response_model.dart';
 import 'package:wendys_challenge/features/home/data/repositories/home_repository_impl.dart';
