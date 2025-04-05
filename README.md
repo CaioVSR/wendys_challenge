@@ -49,6 +49,7 @@ The project integrates with a CI/CD pipeline to ensure code quality and fast fee
 - **ETag Interceptor:** Manages ETag headers and caches responses to optimize network usage.
 - **Loader Overlay & Loading Animation Widget:** Global loading indicators.
 - **Google Fonts:** Custom typography.
+- **Very Good Analysis Lint:** Uses a highly restrictive linting configuration for Flutter/Dart to enforce strict coding standards, promote consistency, reduce common errors, and improve code maintainability and readability.
 
 ## Architecture & Folder Structure
 
